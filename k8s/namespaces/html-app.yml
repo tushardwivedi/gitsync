@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: html
+  name: default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: html
+  name: the-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - ports: 8080
+    targetPort: 80
+  selector:
+    env: docker-desktop
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: html
+  name: htmlSyncPage
+  labels:
+    env: docker-desktop
+spec:
+  containers:
+  - image: tushardwivedi/ngnx-html:v0.2
+    name: htmlApp
+    ports:
+    - containerPort: 80
+    imagePullPolicy: always
