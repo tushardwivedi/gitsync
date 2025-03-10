@@ -31,3 +31,4 @@ spec:
     ports:
     - containerPort: 80
     imagePullPolicy: Always
+# Manifest file for deploying html app to a specific k8s Namespace with Service LB and Service Account.
