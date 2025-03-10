@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: git-sync
+  labels:
+    app: sidecar
+spec:
+  containers:
+  - name: ngx-web
+    image: nginx
+    volumeMounts:
+    - name: html
+      mountPath: /usr/share/nginx/html
+  - name: ngx-sync
+    image: openweb/git-sync:0.0.1
+    # k8s.gcr.io/git-sync:v3.4.0 try this version.
+    volumeMounts:
+    - name: html
+      mountPath: /tmp/git
+    env:
+    - name: GIT_SYNC_REPO
+      value: https://github.com/tushardwivedi/gitsync.git
+    - name: GIT_SYNC_BRANCH
+      value: main
+    - name: GIT_SYNC_DEPTH
+      value: "1"
+    - name: GIT_SYNC_DEST
+      value: /tmp/git
+  volumes:
+  - name: html
+    emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-sidecar
+spec:
+  selector:
+    app: sidecar
+  ports:
+  - port: 80
+  type: LoadBalancer
+# k8s manifest for sidecar example git-sync.
