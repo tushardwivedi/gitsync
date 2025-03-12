@@ -13,7 +13,6 @@ spec:
       mountPath: /usr/share/nginx/html
   - name: ngx-sync
     image: openweb/git-sync:0.0.1
-    # k8s.gcr.io/git-sync:v3.4.0 try this version.
     volumeMounts:
     - name: html
       mountPath: /tmp/git
