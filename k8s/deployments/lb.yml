@@ -1,0 +1,15 @@
+# Loadbalancer Service Object for deploy.yml(hello-deploy)
+apiVersion: v1
+kind: Service
+metadata:
+  name: hellodeploy-lb-svc
+  labels:
+    app: hello-world
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080        # LoadBalancer will accept the request at port 8080.
+    targetPort: 80    # <== when you only define - port, k8s will automatically makes targetPort same as - port.
+    protocol: TCP     # To explicitly tell LB to reach container port 80. 
+  selector:
+    app: hello-world  # <== Send traffic to Pods with this label.

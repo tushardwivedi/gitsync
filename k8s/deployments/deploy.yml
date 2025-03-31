@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: hello-pod
-        image: tushardwivedi/ngnx-html:v0.3 # Version 0.3 for small change in Dockerfile. Copy only index.html
+        image: tushardwivedi/html-docker-images:v0.1 # Version 0.3 for small change in Dockerfile. Copy only index.html
         ports:
         - containerPort: 80
         resources:
