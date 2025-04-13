@@ -1,0 +1,53 @@
+# application manifest with ClusterIP Service & Pods with html-docker-images for ingress.
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-abc # this will be play_with_ai html page.
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: playwithai
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-xyz # this will be services_cloud html page.
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: servicescloud
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: abc
+  labels:
+    app: playwithai
+spec:
+  containers:
+  - image: tushardwivedi/html-docker-images:v0.2
+    name: ctr-playwithai
+    ports:
+    - containerPort: 80
+    imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: xyz
+  labels:
+    app: servicescloud
+spec:
+  containers:
+  - image: tushardwivedi/html-docker-images:v0.3
+    name: ctr-servicescloud
+    ports:
+    - containerPort: 80
+    imagePullPolicy: Always
+
