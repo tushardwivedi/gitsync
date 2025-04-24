@@ -1,0 +1,12 @@
+# YAML manifest for creating standard SC standard-rwo (default) in GKE
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-std
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: standard-rwo
+  resources:
+    requests:
+      storage: 10Gi

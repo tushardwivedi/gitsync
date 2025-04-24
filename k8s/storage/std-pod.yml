@@ -1,0 +1,20 @@
+# YAML manifest for mounting the pvc-std PVC.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stdvolpod
+spec:
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: pvc-std
+  containers:
+  - name: ubuntu-cntr
+    image: ubuntu:latest
+    command:
+    - /bin/bash
+    - "-c"
+    - "sleep 60m"
+    volumeMounts:
+    - mountPath: /data
+      name: data
