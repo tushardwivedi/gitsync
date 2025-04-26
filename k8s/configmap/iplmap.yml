@@ -1,0 +1,8 @@
+# YAML manifest for creating ConfigMap. Defined as multi-map entries.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ipl-map
+data:
+  sport: t20
+  league: fantasy
