@@ -1,0 +1,24 @@
+# Pod manifest for populating and using configmaps as startup cmd env variables.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: startcmd-pod
+  labels:
+    concept: configmaps
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: ipl-cmd
+      image: busybox
+      command: ["/bin/sh", "-c", "echo sport is $(SPORTTYPE) league is $(LEAGUETYPE)", "wait"]
+      env:
+        - name: SPORTTYPE
+          valueFrom:
+            configMapKeyRef:
+              name: ipl-map
+              key: sport
+        - name: LEAGUETYPE
+          valueFrom:
+            configMapKeyRef:
+              name: ipl-map
+              key: league
