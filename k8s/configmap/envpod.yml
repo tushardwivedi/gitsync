@@ -1,0 +1,24 @@
+# Pod manifest for mapping config map to env variables.
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    concept: confimaps
+  name: envpod
+spec:
+  containers:
+  - name: ipl-ctr
+    image: busybox
+    command: ["sleep"]
+    args: ["1000"]
+    env:
+      - name: SPORTTYPE       #<== ENV Variable called SPORTTYPE
+        valueFrom:            #<== based on
+          configMapKeyRef:    #<== a ConfigMap
+            name: ipl-map     #<== named ipl-map
+            key: sport        #<== populated by the value in the "sport" field/key
+      - name: LEAGUETYPE
+        valueFrom:
+          configMapKeyRef:
+            name: ipl-map
+            key: league
