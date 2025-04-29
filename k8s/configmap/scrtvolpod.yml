@@ -1,0 +1,18 @@
+# Manifest for using secrets as volume in a Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: scrt-pod
+  labels:
+    concept: secretvol
+spec:
+  volumes:
+  - name: scrt-vol
+    secret:
+      secretName: ipl-secret
+  containers:
+  - name: scrt-ctr
+    image: nginx
+    volumeMounts:
+    - name: scrt-vol
+      mountPath: "/etc/tkb"
