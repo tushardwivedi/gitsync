@@ -1,0 +1,16 @@
+# YAML manifest for using volume with ConfigMaps aka ConfigMap volume
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmpod
+spec:
+  volumes:
+    - name: volmap
+      configMap:
+        name: ipl-map
+  containers:
+    - name: ubctr
+      image: nginx
+      volumeMounts:
+        - name: volmap
+          mountPath: /etc/name
