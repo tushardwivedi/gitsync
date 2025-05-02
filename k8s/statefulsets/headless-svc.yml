@@ -1,0 +1,14 @@
+# Manifest for headless Service object for the StatefulSet Pods.
+apiVersion: v1
+kind: Service
+metadata:
+  name: hdless-svc
+  labels:
+    app: web
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: web
