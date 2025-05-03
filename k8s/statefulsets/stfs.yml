@@ -1,0 +1,35 @@
+# Manifest for StatefulSet Pod.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dd-sts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  serviceName: "hdless-svc"
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: cntr-web
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: webroot
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+  - metadata:
+      name: webroot
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: ddsc
+      resources:
+        requests:
+          storage: 0.5Gi
