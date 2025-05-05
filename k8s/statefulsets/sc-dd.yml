@@ -1,8 +1,11 @@
-# Manifest for StorageClass on Docker Desktop
+# Manifest for StorageClass on GKE. Creates a new StorageClass. Run `get sc` to list already available SCs on GKE.
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: ddsc
-provisioner: docker.ip/hostpath
+#provisioner: docker.ip/hostpath  // for docker desktop, not working(debug). 
+provisioner: pd.csi.storage.gke.io 
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: false
+parameters:
+  type: pd-ssd

@@ -4,7 +4,7 @@ kind: StatefulSet
 metadata:
   name: dd-sts
 spec:
-  replicas: 1
+  replicas: 3     # Scale up/down the StatefulSet.
   selector:
     matchLabels:
       app: web
@@ -32,4 +32,4 @@ spec:
       storageClassName: ddsc
       resources:
         requests:
-          storage: 0.5Gi
+          storage: 10Gi
