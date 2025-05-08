@@ -1,0 +1,14 @@
+# Example manifest for binding the Role defined in eg-role.yml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-deployments
+  namespace: prod-backend
+subjects:
+- kind: User
+  name: ipl2025
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: read-deployments
+  apiGroup: rbac.authorization.k8s.io
