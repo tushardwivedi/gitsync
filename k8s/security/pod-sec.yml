@@ -1,0 +1,8 @@
+# YAML example for securing Pod communication with API server. Its only a config example and not complete manifest.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-account-example-pod
+spec:
+  serviceAccountName: some-service-account
+  automountServiceAccountToken: false

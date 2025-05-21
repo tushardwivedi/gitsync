@@ -1,0 +1,11 @@
+# Config example for seting some Pods security contexts
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readonly-fstest
+spec:
+  securityContext:
+    readOnlyRootFilesystem: true
+    allowedHostPaths:           #<== make anything below this mount point read only
+      - pathPrefix: "/test"
+        readOnly: true
