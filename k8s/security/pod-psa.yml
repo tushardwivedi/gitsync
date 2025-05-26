@@ -1,0 +1,12 @@
+# Example manifest for testing PSS and PSA policies.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: psaSecurity-pod
+  namespace:
+spec:
+  containers:
+  - name: psa-testctr
+    image: nginx
+  securityContext:
+    privileged: true
