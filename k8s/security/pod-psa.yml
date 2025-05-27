@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: psaSecurity-pod
-  namespace:
+  name: psa-pod
+  namespace: psa-test
 spec:
   containers:
   - name: psa-testctr
     image: nginx
-  securityContext:
-    privileged: true
+    securityContext:
+      privileged: true
