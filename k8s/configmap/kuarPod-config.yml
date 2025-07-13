@@ -1,0 +1,21 @@
+# Manifest for Kuard Pod to use kuar-config data as configMap.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard-app
+  labels:
+    app: kuard
+spec:
+  containers:
+  - name: kuar-ctx
+    image: gcr.io/kuar-demo/kuard-amd64:blue
+    imagePullPolicy: Always
+    volumeMounts:
+      - name: config-volume
+        mountPath: /config
+  volumes:
+      - name: config-volume
+        configMap:
+          name: kuar-config
+  restartPolicy: Never
+        

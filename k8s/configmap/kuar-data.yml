@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kuar-config
+data:
+  kuar-config.txt: |
+    appName = kuard-demo
+    env = docker-desktop 
