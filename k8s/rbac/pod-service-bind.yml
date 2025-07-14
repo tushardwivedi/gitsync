@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: RoleBinding
+metdata:
+  namespace: default
+  name: pod-service
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: xyz
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: devs
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pod-service
