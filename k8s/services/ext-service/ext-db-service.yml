@@ -1,0 +1,9 @@
+# Example manifest for creating a Service Type as External. Using CNAME.
+# The Service/Db exsist outside of k8s. The K8S DNS Service is populated with CNAME mentioned as externalName.
+kind: Service
+apiVersion: v1
+metadata:
+  name: external-pgdb
+spec:
+  type: ExternalName
+  externalName: pgdb.mycomp.com
